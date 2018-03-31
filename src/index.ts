@@ -6,10 +6,6 @@ import { routes } from './routes';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello, Docker');
-});
-
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(routes);

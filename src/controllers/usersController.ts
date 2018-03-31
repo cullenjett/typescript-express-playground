@@ -1,29 +1,14 @@
 import * as express from 'express';
 
 import { User } from '../models/User';
-
-export const usersController: express.Router = express.Router();
 let usersDb: User[] = [];
 
-usersController.get(
-  '/',
-  async (req: express.Request, res: express.Response) => {
+export const usersController = {
+  all(req: express.Request, res: express.Response) {
     res.json(usersDb);
-  }
-);
+  },
 
-usersController.post(
-  '/',
-  async (req: express.Request, res: express.Response) => {
-    const user: User = new User(req.body);
-    usersDb.push(user);
-    res.json(user);
-  }
-);
-
-usersController.get(
-  '/:id',
-  async (req: express.Request, res: express.Response) => {
+  find(req: express.Request, res: express.Response) {
     const userId: number = parseInt(req.params.id, 10);
     const user: User | null = usersDb.find(u => u.id === userId);
 
@@ -32,12 +17,15 @@ usersController.get(
     }
 
     res.json(user);
-  }
-);
+  },
 
-usersController.put(
-  '/:id',
-  async (req: express.Request, res: express.Response) => {
+  create(req: express.Request, res: express.Response) {
+    const user: User = new User(req.body);
+    usersDb.push(user);
+    res.json(user);
+  },
+
+  update(req: express.Request, res: express.Response) {
     const reqUser: User = req.body;
     const userId: number = parseInt(req.params.id, 10);
     const user: User | undefined = usersDb.find(u => u.id === userId);
@@ -61,4 +49,4 @@ usersController.put(
 
     res.json(updatedUser);
   }
-);
+};

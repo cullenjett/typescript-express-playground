@@ -1,6 +1,6 @@
 # 🏖 Node API Playground
 
-A place to do Node API shit
+A place to do Node API shit. It's currently a super naive REST API written in Typescript...
 
 ## Installation
 
