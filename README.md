@@ -1,4 +1,4 @@
-🏖 Node API Playground
+# 🏖 Node API Playground
 
 A place to do Node API shit
 
@@ -10,4 +10,8 @@ A place to do Node API shit
 
 * `npm start`
 
-This starts a server on port 3000 that reloads on file changes
+This starts a server on port 3000 that reloads on file changes.
+
+* `npm run docker` (requires Docker)
+
+Build and start a Docker image for local development.

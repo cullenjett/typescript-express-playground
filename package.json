@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src"
+    "start": "nodemon ./src",
+    "docker": "npm run docker:build && npm run docker:start",
+    "docker:build": "docker build --rm -t cullenjett/node-api-playground .",
+    "docker:start":
+      "docker run --rm -it -p 3000:3000 -v $(pwd)/src:/node-api-playground/src/ cullenjett/node-api-playground"
   },
   "keywords": [],
   "author": "",
