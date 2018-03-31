@@ -7,8 +7,7 @@
     "start": "nodemon ./src",
     "docker": "npm run docker:build && npm run docker:start",
     "docker:build": "docker build --rm -t cullenjett/node-api-playground .",
-    "docker:start":
-      "docker run --rm -it -p 3000:3000 -v $(pwd)/src:/node-api-playground/src/ cullenjett/node-api-playground"
+    "docker:start": "docker run --rm -it -p 3000:3000 -v $(pwd)/src:/node-api-playground/src/ cullenjett/node-api-playground"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +22,8 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
   }
 }

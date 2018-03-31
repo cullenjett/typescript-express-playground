@@ -1,7 +1,9 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "lib": ["es2015"]
   }
 }
