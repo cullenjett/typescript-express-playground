@@ -1,7 +1,7 @@
 # build =====================
 FROM node:9 as build
 
-WORKDIR /node-api-playground
+WORKDIR /typescript-express-playground
 
 COPY package*.json ./
 

@@ -1,6 +1,12 @@
-# 🏖 Node API Playground
+# 🏖 Typescript Express Playground
 
-A place to do Node API shit. It's currently a super naive REST API written in Typescript...
+A place to do Node API shit.
+
+## Features
+
+* Typescript + Express API
+* Database TBD
+* Dockerized for local development
 
 ## Installation
 

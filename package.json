@@ -1,5 +1,5 @@
 {
-  "name": "node-api-playground",
+  "name": "typescript-express-playground",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,10 @@
     "start": "nodemon ./src",
     "test": "jest --watch",
     "docker": "npm run docker:build && npm run docker:start",
-    "docker:build": "docker build --rm -t cullenjett/node-api-playground .",
+    "docker:build":
+      "docker build --rm -t cullenjett/typescript-express-playground .",
     "docker:start":
-      "docker run --rm -it -p 3000:3000 -v $(pwd)/src:/node-api-playground/src/ cullenjett/node-api-playground"
+      "docker run --rm -it -p 3000:3000 -v $(pwd)/src:/typescript-express-playground/src/ cullenjett/typescript-express-playground"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0"
   },
+  "private": true,
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
