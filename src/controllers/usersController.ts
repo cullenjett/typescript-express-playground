@@ -1,51 +1,30 @@
 import * as express from 'express';
 
 import { User } from '../models/User';
-let usersDb: User[] = [];
+import { userService } from '../services/userService';
 
 export const usersController = {
-  all(req: express.Request, res: express.Response) {
-    res.json(usersDb);
+  index(req, res) {
+    res.json(userService.all());
   },
 
-  find(req: express.Request, res: express.Response) {
+  show(req, res) {
     const userId: number = parseInt(req.params.id, 10);
-    const user: User | null = usersDb.find(u => u.id === userId);
-
-    if (!user) {
-      res.status(404);
-    }
+    const user: User = userService.find(userId);
 
     res.json(user);
   },
 
-  create(req: express.Request, res: express.Response) {
-    const user: User = new User(req.body);
-    usersDb.push(user);
+  create(req, res) {
+    const user: User = userService.save(req.body);
+
     res.json(user);
   },
 
-  update(req: express.Request, res: express.Response) {
-    const reqUser: User = req.body;
+  update(req, res) {
+    const data = req.body;
     const userId: number = parseInt(req.params.id, 10);
-    const user: User | undefined = usersDb.find(u => u.id === userId);
-
-    if (user === undefined) {
-      res.status(404).send(`User ${userId} not found`);
-    }
-
-    const updatedUser: User = {
-      ...user,
-      ...reqUser
-    };
-
-    usersDb = usersDb.map(u => {
-      if (u.id !== userId) {
-        return u;
-      }
-
-      return updatedUser;
-    });
+    const updatedUser: User = userService.update(userId, data);
 
     res.json(updatedUser);
   }

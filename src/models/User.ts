@@ -1,7 +1,7 @@
 export class User {
-  public id: number;
-  public email: string;
-  public name: string;
+  id: number;
+  email: string;
+  name: string;
 
   constructor({ email, name }) {
     this.id = Date.now();
