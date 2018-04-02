@@ -1,20 +1,11 @@
 import * as bodyParser from 'body-parser';
-import * as chokidar from 'chokidar';
 import * as express from 'express';
 import * as morgan from 'morgan';
+import * as path from 'path';
 
-const watcher = chokidar.watch('./');
+import { purgeCacheOnChange } from './utils/purgeCacheOnChange';
 
-watcher.on('ready', () => {
-  watcher.on('all', () => {
-    console.log('Reloading server...');
-    Object.keys(require.cache).forEach(id => {
-      if (/[\/\\]src[\/\\]/.test(id)) {
-        delete require.cache[id];
-      }
-    });
-  });
-});
+purgeCacheOnChange(path.resolve(__dirname, './'));
 
 const app = express();
 

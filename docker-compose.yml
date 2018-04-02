@@ -1,0 +1,19 @@
+version: "2"
+services:
+  api:
+    build: .
+    volumes:
+      - ./src:/typescript-express-playground/src
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    logging:
+      driver: "none"
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"

@@ -1,37 +1,22 @@
+import { db } from '../utils/db';
 import { User } from '../models/User';
 
-let usersDb: User[] = [];
+const collection = db.get('users');
 
 export const userService = {
-  all(): User[] {
-    return usersDb;
+  async all(): Promise<User[]> {
+    return await collection.find();
   },
 
-  find(id: number): User {
-    return usersDb.find(u => u.id === id);
+  async find(id: string): Promise<User> {
+    return await collection.findOne({ _id: id });
   },
 
-  save({ email, name }): User {
-    const user = new User({ email, name });
-    usersDb.push(user);
-    return user;
+  async save(user: User): Promise<User> {
+    return await collection.insert(user);
   },
 
-  update(id: number, attrs: any): User {
-    const existingUser = usersDb.find(u => u.id === id) || {};
-    const updatedUser = new User({
-      ...existingUser,
-      ...attrs
-    });
-
-    usersDb = usersDb.map(u => {
-      if (u.id === id) {
-        return updatedUser;
-      } else {
-        return u;
-      }
-    });
-
-    return updatedUser;
+  async update(id: string, attrs: any): Promise<User> {
+    return await collection.findOneAndUpdate({ _id: id }, { $set: attrs });
   }
 };

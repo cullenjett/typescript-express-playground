@@ -1,30 +1,30 @@
-import * as express from 'express';
-
 import { User } from '../models/User';
 import { userService } from '../services/userService';
 
 export const usersController = {
-  index(req, res) {
-    res.json(userService.all());
+  async index(req, res) {
+    const users: User[] = await userService.all();
+
+    res.json(users);
   },
 
-  show(req, res) {
-    const userId: number = parseInt(req.params.id, 10);
-    const user: User = userService.find(userId);
+  async show(req, res) {
+    const id: string = req.params.id;
+    const user: User = await userService.find(id);
 
     res.json(user);
   },
 
-  create(req, res) {
-    const user: User = userService.save(req.body);
+  async create(req, res) {
+    const user: User = await userService.save(req.body);
 
-    res.json(user);
+    res.status(201).json(user);
   },
 
-  update(req, res) {
+  async update(req, res) {
     const data = req.body;
-    const userId: number = parseInt(req.params.id, 10);
-    const updatedUser: User = userService.update(userId, data);
+    const userId: string = req.params.id;
+    const updatedUser: User = await userService.update(userId, data);
 
     res.json(updatedUser);
   }
